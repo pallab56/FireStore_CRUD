@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firestorecrud/firebase_options.dart';
 import 'package:firestorecrud/home_sccreen.dart';
@@ -6,6 +7,11 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseFirestore.instance.settings = const Settings(
+    ///enable cache the data on device
+    ///that makes the app more cost effective
+    persistenceEnabled: true,
+  );
   runApp(const MyApp());
 }
 
