@@ -32,8 +32,16 @@ class DatabaseService {
     return _todoref.snapshots();
   }
 
-// fn to add data to firestore
+  // fn to add data to firestore
   void addTodo(Todo todo) async {
     await _todoref.add(todo);
+  }
+
+  void updateTodo(String todoId, Todo todo) async {
+    await _todoref.doc(todoId).update(todo.toJson());
+  }
+
+  void deleteTodo(String todoId) {
+    _todoref.doc(todoId).delete();
   }
 }
